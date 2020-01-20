@@ -205,11 +205,11 @@ public class MyGameGUI extends JFrame implements MouseListener {
      * Save KML file using KML logger
      */
     private void SaveKML() {
-        for (int i = 0; i <= 23; i++) {
+        int i =  Integer.parseInt(JOptionPane.showInputDialog("Enter scenario number between 0-23"));
             Scenario s = new Scenario(i); // you have [0,23] games
             KML_Save(s);
         }
-    }
+    //}
 
     /**
      * Activating 'drive robot manual'
@@ -572,23 +572,14 @@ public class MyGameGUI extends JFrame implements MouseListener {
             List<String> log = s.game.move();
             if (log != null) {
                 for (int i = 0; i < log.size(); i++) {
-                    String robot_json = log.get(i);
-                    try {
-                        JSONObject line = new JSONObject(robot_json);
-                        JSONObject ttt = line.getJSONObject("Robot");
-                        int rid = ttt.getInt("id");
-                        String des = JOptionPane.showInputDialog(rootPane, "Enter destination");
-                        if (des != null) {
-                            int dest = Integer.parseInt(des);
-                            //   if(pick!=null) {
-                            game.chooseNextEdge(rid, dest);
-                            //                    s.game.move();
-                        }
-                        //     }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    String rid1 = JOptionPane.showInputDialog(rootPane, "Enter robot id");
+                    String des = JOptionPane.showInputDialog(rootPane, "Enter destination");
+                    if (des != null) {
+                        int dest = Integer.parseInt(des);
+                        int robotId = Integer.parseInt(rid1);
+                        game.chooseNextEdge(robotId, dest);
                     }
+
                 }
             }
         }
