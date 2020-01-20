@@ -205,11 +205,13 @@ public class MyGameGUI extends JFrame implements MouseListener {
      * Save KML file using KML logger
      */
     private void SaveKML() {
-        int i =  Integer.parseInt(JOptionPane.showInputDialog("Enter scenario number between 0-23"));
-            Scenario s = new Scenario(i); // you have [0,23] games
-            KML_Save(s);
-        }
-    //}
+       int i =  Integer.parseInt(JOptionPane.showInputDialog("Enter scenario number between 0-23"));
+                Scenario s = new Scenario(i); // you have [0,23] games
+               int finish = KML_Save(s);
+
+            if(finish==1)JOptionPane.showMessageDialog(null, "Save complete");
+            if(finish==-1)JOptionPane.showMessageDialog(null, "Save Failed");
+    }
 
     /**
      * Activating 'drive robot manual'
